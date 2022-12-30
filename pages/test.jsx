@@ -1,12 +1,13 @@
-import TextForTestPage from "../components/TestComp/TextForTestPage";
+import MainContainer from '../components/MainContainer'
+import TextForTestPage from '../components/TestComp/TextForTestPage'
 
 export default function test() {
-  return (
-		<div>
+	return (
+		<MainContainer>
 			<div>
-				<h1 className="test-h1">Тестовая страница</h1>
+				<h1 className='test-h1'>Тестовая страница</h1>
 			</div>
-      <TextForTestPage/>
-		</div>
+			<TextForTestPage />
+		</MainContainer>
 	)
 }

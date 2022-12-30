@@ -1,13 +1,11 @@
+import axios from 'axios'
 import Link from 'next/link'
-import { useState } from 'react'
+import MainContainer from '../components/MainContainer'
+import Menu from '../components/Menu'
 
-export default function users() {
-	const [users, setUsers] = useState([
-		{ id: 1, name: 'Kolya' },
-		{ id: 2, name: 'Vasya' },
-	])
+export default function users({ users }) {
 	return (
-		<div>
+		<MainContainer>
 			<h1>Список пользователей</h1>
 			<ul>
 				{users.map((user) => (
@@ -16,6 +14,15 @@ export default function users() {
 					</Link>
 				))}
 			</ul>
-		</div>
+		</MainContainer>
 	)
+}
+
+// для получения данных извне необходимо добавлять вот такую функцию (берем ее из документации Next.js):
+export async function getStaticProps(context) {
+	const response = await axios(`https://jsonplaceholder.typicode.com/users`)
+	const users = response.data
+	return {
+		props: { users }, // will be passed to the page component as props
+	}
 }
